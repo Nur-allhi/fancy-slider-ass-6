@@ -122,10 +122,16 @@ searchBtn.addEventListener("click", function () {
   document.querySelector(".main").style.display = "none";
   clearInterval(timer);
   const search = document.getElementById("search");
+
   getImages(search.value);
   sliders.length = 0;
 });
-
+// Added Enter Button funtion for sarch bar
+document.getElementById("search").addEventListener("keyup", (event) => {
+  if (event.key === "Enter") {
+    searchBtn.click();
+  }
+});
 sliderBtn.addEventListener("click", function () {
   createSlider();
 });
