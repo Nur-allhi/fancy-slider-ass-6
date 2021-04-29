@@ -42,7 +42,7 @@ function miliSecTosec() {
   return durationSec;
 }
 
-// Select picture from the result:
+// Select/deselect picture from the result:
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
