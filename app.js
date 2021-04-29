@@ -35,7 +35,14 @@ const getImages = (query) => {
     .then((data) => showImages(data.hits))
     .catch((err) => console.log(err));
 };
+// Duration Miliseconds converted into seconds:
+function miliSecTosec() {
+  const duration = document.getElementById("duration").value || 1;
+  const durationSec = duration * 1000;
+  return durationSec;
+}
 
+// Select picture from the result:
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
@@ -49,14 +56,6 @@ const selectItem = (event, img) => {
   }
 };
 
-function durationInputValue() {
-  const durationInput = document.getElementById("duration").value;
-  if (durationInput < 0) {
-    durationInput.value || 1000;
-    alert("Please input positive value");
-    return;
-  }
-}
 var timer;
 const createSlider = () => {
   // check slider image length
@@ -78,11 +77,7 @@ const createSlider = () => {
   document.querySelector(".main").style.display = "block";
   // hide image aria
   imagesArea.style.display = "none";
-  // duration value issue fixed.
-  // const duration = document.getElementById("duration").value || 1000;
-  // My test******************************
-
-  // test End*********************************************
+  const duration = miliSecTosec();
   sliders.forEach((slide) => {
     let item = document.createElement("div");
     item.className = "slider-item";
@@ -131,6 +126,6 @@ searchBtn.addEventListener("click", function () {
   sliders.length = 0;
 });
 
-// sliderBtn.addEventListener("click", function () {
-//   createSlider();
-// });
+sliderBtn.addEventListener("click", function () {
+  createSlider();
+});
